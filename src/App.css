@@ -45,4 +45,40 @@
   /* to display new line */
   white-space: pre-wrap;
   overflow-y: auto;
+  word-wrap: break-word;
+}
+
+@media(min-width: 510px) {
+  #wrapEditor, #wrapPreviewer {
+    height: 98vh;
+    width: 49.2vw;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  #editor, #preview {
+    height: 92vh;
+  }
+
+  #editor {
+    width: 48vw;
+  }
+
+  #preview {
+    width: 48.5vw;
+  }
+}
+
+@media(min-width: 1000px) {
+  #wrapEditor, #wrapPreviewer {
+    width: 49.6vw;
+  }
+
+  #editor {
+    width: 49.2vw;
+  }
+
+  #preview {
+    width: 49.3vw;
+  }
 }
