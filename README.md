@@ -25,3 +25,53 @@ You can use any mix of HTML, JavaScript, CSS, Bootstrap, SASS, React, Redux, and
 **Optional Bonus** (you do not need to make this test pass): My markdown previewer interprets carriage returns and renders them as br (line break) elements.
 
 You can build your project by forking this CodePen pen. Or you can use this CDN link to run the tests in any environment you like: `https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js`
+
+**Note:**
+
+Using marked
+
+- npm install marked
+- On App.js
+
+  ```jsx
+  import marked from ‘marked’;
+  // set marked option to use new line
+  marked.setOptions({
+    gfm: true,
+    breaks: true
+  });
+  // to handle changing text
+  handleChange(e) {
+    this.setState({
+      input: e.target.value
+    });
+  }
+  // to use default preview
+  componentDidMount() {
+  // to output markdown and open link up in a new tap
+    document.getElementById(‘preview’).innerHTML = marked(this.state.input).replace(/<a/, ‘<a target=”_blank”’);
+  }
+  // to update changed text
+  componentDidUpdate() {
+    document.getElementById(‘preview’).innerHTML = marked(this.state.input).replace(/<a/, ‘<a target=”_blank”’);
+  }
+  ```
+
+To control preview scroll bar by the editor
+
+- On App.js
+
+  ```jsx
+  handleScroll() {
+    // to get scroll position
+    let scrollPos = document.getElementById(‘editor’).scrollTop * 
+                          (document.getElementById(‘preview’).scrollHeight –
+                          document.getElementById(‘preview’).clientHeight) /
+                          (document.getElementById(‘editor’).scrollHeight –
+                          document.getElementById(‘editor’).clientHeight);
+    // to set preview scroll position
+    document.getElementById(‘preview’).scrollTo(0, parseInt(scrollPos));
+  }
+
+  <textarea id=”editor” onChange={this.handleChange} onScroll={this.handleScroll}>
+  ```
